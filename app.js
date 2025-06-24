@@ -1,16 +1,18 @@
 const express = require('express');
 const app=express();
 
+app.set('view engine', 'ejs');
+
 app.get('/',(req,res) => {
-    res.send('Home page');
+    res.sendFile(__dirname +'/index.html');
 });
 
 app.get('/about',(req,res)=>{
-    res.send('About page');
+    res.sendFile(__dirname +'/about.html');
 });
 
 app.get('/profile/:name',(req,res)=>{
-    res.send('profile name is ' + req.params.name)
+    res.render('profile',{person : req.params.name});
 });
 
 app.listen(3000);
