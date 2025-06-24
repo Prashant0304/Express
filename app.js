@@ -4,15 +4,16 @@ const app=express();
 app.set('view engine', 'ejs');
 
 app.get('/',(req,res) => {
-    res.sendFile(__dirname +'/index.html');
+    res.render('index');
 });
 
 app.get('/about',(req,res)=>{
-    res.sendFile(__dirname +'/about.html');
+    res.render('about');
 });
 
 app.get('/profile/:name',(req,res)=>{
-    res.render('profile',{person : req.params.name});
+    const data ={age :30 , job :'developer', friends:['sarha', 'jane','willma']};
+    res.render('profile',{person : req.params.name, data});
 });
 
 app.listen(3000);
