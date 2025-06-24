@@ -7,6 +7,10 @@ app.get('/',(req,res) => {
 
 app.get('/about',(req,res)=>{
     res.send('About page');
-})
+});
+
+app.get('/profile/:name',(req,res)=>{
+    res.send('profile name is ' + req.params.name)
+});
 
 app.listen(3000);
