@@ -1,5 +1,10 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app=express();
+
+const urlencodedParser = bodyParser.urlencoded({
+    extended:false
+});
 
 app.set('view engine', 'ejs');
 
@@ -13,6 +18,12 @@ app.get('/about',(req,res)=>{
     
     res.render('about',{qs: req.query});
 });
+
+app.post('/about', urlencodedParser , (req,res)=>{
+    res.render('about-success',{data: req.body});
+});
+
+
 
 app.get('/profile/:name',(req,res)=>{
     const data ={age :30 , job :'developer', friends:['sarha', 'jane','willma']};
